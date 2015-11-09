@@ -11,15 +11,17 @@ describe TransfersController, type: :controller do
 
     describe "#index" do
       let!(:incoming_work) do
-        GenericWork.new.tap do |w|
+        GenericWork.new do |w|
           w.apply_depositor_metadata(another_user.user_key)
+          w.title = ["demoin"]
           w.save!
           w.request_transfer_to(user)
         end
       end
       let!(:outgoing_work) do
-        GenericWork.new.tap do |w|
+        GenericWork.new do |w|
           w.apply_depositor_metadata(user.user_key)
+          w.title = ["demoout"]
           w.save!
           w.request_transfer_to(another_user)
         end
@@ -48,8 +50,9 @@ describe TransfersController, type: :controller do
 
     describe "#new" do
       let(:work) do
-        GenericWork.new.tap do |w|
+        GenericWork.new do |w|
           w.apply_depositor_metadata(user.user_key)
+          w.title = ["demoname"]
           w.save!
         end
       end
@@ -67,8 +70,9 @@ describe TransfersController, type: :controller do
 
     describe "#create" do
       let(:work) do
-        GenericWork.new.tap do |w|
+        GenericWork.new do |w|
           w.apply_depositor_metadata(user.user_key)
+          w.title = ["demoname"]
           w.save!
         end
       end
@@ -99,8 +103,9 @@ describe TransfersController, type: :controller do
     describe "#accept" do
       context "when I am the receiver" do
         let!(:incoming_work) do
-          GenericWork.new.tap do |w|
+          GenericWork.new do |w|
             w.apply_depositor_metadata(another_user.user_key)
+            w.title = ["demoname"]
             w.save!
             w.request_transfer_to(user)
           end
@@ -130,8 +135,9 @@ describe TransfersController, type: :controller do
 
       context "accepting one that isn't mine" do
         let!(:incoming_work) do
-          GenericWork.new.tap do |w|
+          GenericWork.new do |w|
             w.apply_depositor_metadata(user.user_key)
+            w.title = ["demoname"]
             w.save!
             w.request_transfer_to(another_user)
           end
@@ -147,8 +153,9 @@ describe TransfersController, type: :controller do
     describe "#reject" do
       context "when I am the receiver" do
         let!(:incoming_work) do
-          GenericWork.new.tap do |w|
+          GenericWork.new do |w|
             w.apply_depositor_metadata(another_user.user_key)
+            w.title = ["demoname"]
             w.save!
             w.request_transfer_to(user)
           end
@@ -163,8 +170,9 @@ describe TransfersController, type: :controller do
 
       context "accepting one that isn't mine" do
         let!(:incoming_work) do
-          GenericWork.new.tap do |w|
+          GenericWork.new do |w|
             w.apply_depositor_metadata(user.user_key)
+            w.title = ["demoname"]
             w.save!
             w.request_transfer_to(another_user)
           end
@@ -180,8 +188,9 @@ describe TransfersController, type: :controller do
     describe "#destroy" do
       context "when I am the sender" do
         let!(:incoming_work) do
-          GenericWork.new.tap do |w|
+          GenericWork.new do |w|
             w.apply_depositor_metadata(user.user_key)
+            w.title = ["demoname"]
             w.save!
             w.request_transfer_to(another_user)
           end
@@ -195,8 +204,9 @@ describe TransfersController, type: :controller do
 
       context "accepting one that isn't mine" do
         let!(:incoming_work) do
-          GenericWork.new.tap do |w|
+          GenericWork.new do |w|
             w.apply_depositor_metadata(another_user.user_key)
+            w.title = ["demoname"]
             w.save!
             w.request_transfer_to(user)
           end

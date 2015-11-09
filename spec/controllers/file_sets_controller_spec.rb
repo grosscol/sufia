@@ -94,6 +94,7 @@ describe FileSetsController do
         let(:work) do
           GenericWork.new do |w|
             w.apply_depositor_metadata(user)
+            w.title = ["demoname"]
             w.save!
           end
         end
@@ -135,6 +136,7 @@ describe FileSetsController do
         let(:work) do
           GenericWork.new do |w|
             w.apply_depositor_metadata(user)
+            w.title = ["demoname"]
             w.save!
           end
         end
@@ -232,6 +234,7 @@ describe FileSetsController do
           let(:work) do
             GenericWork.new do |w|
               w.apply_depositor_metadata(user)
+              w.title = ["demoname"]
               w.save!
             end
           end

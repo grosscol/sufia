@@ -40,8 +40,9 @@ describe Sufia::Ability, type: :model do
     let(:sender) { FactoryGirl.find_or_create(:jill) }
     let(:user) { FactoryGirl.find_or_create(:archivist) }
     let(:work) do
-      GenericWork.new.tap do|work|
+      GenericWork.new do|work|
         work.apply_depositor_metadata(sender.user_key)
+        work.title = ["demoname"]
         work.save!
       end
     end

@@ -4,14 +4,15 @@ describe ContentDepositorChangeEventJob do
   let!(:depositor) { FactoryGirl.find_or_create(:jill) }
   let!(:receiver) { FactoryGirl.find_or_create(:archivist) }
   let!(:file) do
-    FileSet.new.tap do |f|
+    FileSet.new do |f|
       f.apply_depositor_metadata(depositor.user_key)
       f.save!
     end
   end
   let!(:work) do
-    GenericWork.new.tap do |w|
+    GenericWork.new do |w|
       w.apply_depositor_metadata(depositor.user_key)
+      w.title = ["demoname"]
       w.save!
     end
   end
