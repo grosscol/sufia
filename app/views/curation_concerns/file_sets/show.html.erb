@@ -1,4 +1,8 @@
 <%= render 'shared/citations' %>
+<% provide :page_title, @presenter.page_title %>
+<% provide :page_header do %>
+  <h1>File Details <small><%= @presenter.title %></small></h1>
+<% end %>
 
 <%= javascript_include_tag 'https://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4ff1d986721ebb24' %>
 
